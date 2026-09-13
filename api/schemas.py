@@ -1,0 +1,34 @@
+from pydantic import BaseModel
+
+class CustomerData(BaseModel):
+    #Burası verinin ngeliş gidişini belirleyen schema'lar
+
+
+    gender: str
+    SeniorCitizen: int
+    Partner: str
+    Dependents: str
+    tenure: int
+    PhoneService: str
+    MultipleLines: str
+    InternetService: str
+    OnlineSecurity: str
+    OnlineBackup: str
+    DeviceProtection: str
+    TechSupport: str
+    StreamingTV: str
+    StreamingMovies: str
+    Contract: str
+    PaperlessBilling: str
+    PaymentMethod: str
+    MonthlyCharges: float
+    TotalCharges: float
+
+
+
+class PredictionResult(BaseModel):
+
+    Churn: str
+    PredictionRate: float
+
+
