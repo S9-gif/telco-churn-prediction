@@ -58,6 +58,14 @@ form.addEventListener("submit", async (event) => {
   submitBtn.disabled = true;
   submitBtn.textContent = "Predicting...";
 
+
+  const wakeUpTimer = setTimeout(() => {
+    submitBtn.textContent = "Waking up the server, this may take up to a minute...";
+  }, 3000);
+
+
+
+
   try {
     const formData = new FormData(form);
     const payload = buildPayload(formData);
