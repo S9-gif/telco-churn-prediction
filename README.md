@@ -1,6 +1,8 @@
 # Telco Customer Churn Prediction
 
-📓 [Development Diary](https://wwwsercankuru.notion.site/ML-dev-diary-3b69e0171b4480e6a9d5c5a5cc7670db)
+🌐 [Live Demo](https://telco-churn-prediction-fb63.onrender.com/) · 📓 [Development Diary](https://wwwsercankuru.notion.site/ML-dev-diary-3b69e0171b4480e6a9d5c5a5cc7670db)
+
+> Note: hosted on Render's free tier — the server may take up to a minute to wake up if it has been idle.
 
 ---
 
@@ -72,8 +74,7 @@ Python, pandas, NumPy, scikit-learn, matplotlib, seaborn, FastAPI, Pydantic, Uvi
 
 ### Status
 ✅ Baseline model completed
-✅ API & frontend deployed locally
-🔲 Cloud deployment (in progress)
+✅ API & frontend deployed live on Render
 
 ---
 
@@ -145,5 +146,4 @@ Python, pandas, NumPy, scikit-learn, matplotlib, seaborn, FastAPI, Pydantic, Uvi
 
 ### Durum
 ✅ Baseline model tamamlandı
-✅ API ve frontend yerel olarak deploy edildi
-🔲 Bulut deployment (devam ediyor)
+✅ API ve frontend Render üzerinde canlı olarak deploy edildi
