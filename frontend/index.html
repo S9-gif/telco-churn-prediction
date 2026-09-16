@@ -1,0 +1,206 @@
+<!DOCTYPE html>   
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telco Churn Prediction</title> <!-- Web site ismi üst için-->
+  <link rel="stylesheet" href="style.css" />  <!--Css dosyamı buraya bağlıyorum -->
+</head>
+
+
+<!-- Ana sayfam-->
+
+<body>
+  <div class="page">
+    <header class="header">
+      <h1>Telco Customer Churn Predictor</h1>
+      <p>Fill in customer details to estimate churn risk.</p>
+    </header>
+<!-- Header'dan main'e geçiş-->
+    <main class="layout">
+      <form id="churn-form" class="card form">
+        <fieldset>
+          <legend>Customer</legend>
+
+          <div class="field">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+            </select>
+          </div>
+
+          <div class="field checkbox-field">
+            <label for="SeniorCitizen">Senior citizen</label>
+            <input type="checkbox" id="SeniorCitizen" name="SeniorCitizen" />
+          </div>
+
+          <div class="field">
+            <label for="Partner">Has partner</label>
+            <select id="Partner" name="Partner" required>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="Dependents">Has dependents</label>
+            <select id="Dependents" name="Dependents" required>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="tenure">Tenure (months)</label>
+            <input type="number" id="tenure" name="tenure" min="0" value="12" required />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Services</legend>
+
+          <div class="field">
+            <label for="PhoneService">Phone service</label>
+            <select id="PhoneService" name="PhoneService" required>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="MultipleLines">Multiple lines</label>
+            <select id="MultipleLines" name="MultipleLines" required>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+              <option value="No phone service">No phone service</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="InternetService">Internet service</label>
+            <select id="InternetService" name="InternetService" required>
+              <option value="DSL">DSL</option>
+              <option value="Fiber optic">Fiber optic</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="OnlineSecurity">Online security</label>
+            <select id="OnlineSecurity" name="OnlineSecurity" required>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+              <option value="No internet service">No internet service</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="OnlineBackup">Online backup</label>
+            <select id="OnlineBackup" name="OnlineBackup" required>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+              <option value="No internet service">No internet service</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="DeviceProtection">Device protection</label>
+            <select id="DeviceProtection" name="DeviceProtection" required>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+              <option value="No internet service">No internet service</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="TechSupport">Tech support</label>
+            <select id="TechSupport" name="TechSupport" required>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+              <option value="No internet service">No internet service</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="StreamingTV">Streaming TV</label>
+            <select id="StreamingTV" name="StreamingTV" required>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+              <option value="No internet service">No internet service</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="StreamingMovies">Streaming movies</label>
+            <select id="StreamingMovies" name="StreamingMovies" required>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+              <option value="No internet service">No internet service</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Account</legend>
+
+          <div class="field">
+            <label for="Contract">Contract</label>
+            <select id="Contract" name="Contract" required>
+              <option value="Month-to-month">Month-to-month</option>
+              <option value="One year">One year</option>
+              <option value="Two year">Two year</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="PaperlessBilling">Paperless billing</label>
+            <select id="PaperlessBilling" name="PaperlessBilling" required>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="PaymentMethod">Payment method</label>
+            <select id="PaymentMethod" name="PaymentMethod" required>
+              <option value="Electronic check">Electronic check</option>
+              <option value="Mailed check">Mailed check</option>
+              <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+              <option value="Credit card (automatic)">Credit card (automatic)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="MonthlyCharges">Monthly charges ($)</label>
+            <input type="number" id="MonthlyCharges" name="MonthlyCharges" step="0.01" min="0" value="70.00" required />
+          </div>
+
+          <div class="field">
+            <label for="TotalCharges">Total charges ($)</label>
+            <input type="number" id="TotalCharges" name="TotalCharges" step="0.01" min="0" value="840.00" required />
+          </div>
+        </fieldset>
+
+        <button type="submit" id="submit-btn">Predict churn risk</button>
+      </form>
+
+      <aside class="card result" id="result-panel" hidden>
+        <h2>Prediction</h2>
+        <div class="result-badge" id="result-badge"></div>
+        <div class="prob-bar-track">
+          <div class="prob-bar-fill" id="prob-bar-fill"></div>
+        </div>
+        <p class="prob-label" id="prob-label"></p>
+      </aside>
+
+      <aside class="card result error" id="error-panel" hidden>
+        <h2>Something went wrong</h2>
+        <p id="error-message"></p>
+      </aside>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from schemas import PredictionResult,CustomerData
 import joblib
 import pandas as pd
@@ -132,13 +133,23 @@ def predict(customer:CustomerData):     #Parametre olarak da CustomerData almal�
 
 
 
-    churn_pre=muhittin.predict(encoded_data)
     probability_pre=muhittin.predict_proba(encoded_data)
-
-    churn_pre=str(churn_pre[0])
     probability_pre=float(probability_pre[0,1])
+
+    # sklearn'ün predict() metodu sabit 0.5 eşik kullanır. Notebook'taki analizde
+    # recall'u önceliklendirmek için ~0.32 eşiği seçildi (recall %53 -> %75),
+    # bu yüzden sınıfı 0.5 yerine o eşikle belirliyoruz.
+    CHURN_THRESHOLD = 0.32      #Burda bir debugging işlemi gerçekleştirdik belirlediğimthreshold predict fonksiyonunda tanınmıyordu o yüzden kodda bir daha tanımladık.
+    churn_pre = "1" if probability_pre >= CHURN_THRESHOLD else "0"
 
 
 
 #3- Alınan sonuç yine schemaya uygun şekilde kullanıcıya geri verilmeli
     return PredictionResult(Churn=churn_pre, PredictionRate=probability_pre)
+
+
+# Frontend'i aynı origin'den servis ediyoruz (CORS'a gerek kalmadan).
+# Bu mount /predict route'undan SONRA tanımlanmalı, yoksa "/" her isteği yakalar.
+app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
+#   app API objeme frontendi ekliyorum.
+#   Farklı originden geliyor olsaydı da apı'ın buna izin veriyor olması gerekiyordu.
