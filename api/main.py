@@ -1,11 +1,17 @@
 
+from pathlib import Path
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from schemas import PredictionResult,CustomerData
 import joblib
 import pandas as pd
 
-muhittin = joblib.load("../models/model.pkl")   #Modelimi burda yükledim adı muhittin :)
+# main.py'nin bulunduğu dizinden bağımsız, dosyanın kendi konumuna göre mutlak yol kuruyoruz.
+# "../models" gibi göreli yollar, uvicorn'un hangi dizinden çalıştırıldığına bağlı olduğu için
+# Render'da (repo kökünden çalıştırıldığında) yanlış klasöre bakıp hata veriyordu.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+muhittin = joblib.load(BASE_DIR / "models" / "model.pkl")   #Modelimi burda yükledim adı muhittin :)
 
 
 
@@ -150,6 +156,6 @@ def predict(customer:CustomerData):     #Parametre olarak da CustomerData almal�
 
 # Frontend'i aynı origin'den servis ediyoruz (CORS'a gerek kalmadan).
 # Bu mount /predict route'undan SONRA tanımlanmalı, yoksa "/" her isteği yakalar.
-app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
+app.mount("/", StaticFiles(directory=BASE_DIR / "frontend", html=True), name="frontend")
 #   app API objeme frontendi ekliyorum.
 #   Farklı originden geliyor olsaydı da apı'ın buna izin veriyor olması gerekiyordu.
